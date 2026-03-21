@@ -11,6 +11,11 @@ cask "hn-reader" do
 
   app "HNReader.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/HNReader.app"]
+  end
+
   zap trash: [
     "~/Library/Preferences/com.tbeseda.HNReader.plist",
   ]
