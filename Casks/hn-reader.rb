@@ -12,14 +12,13 @@ cask "hn-reader" do
   app "HNReader.app"
 
   postflight do
-    puts "Removing quarantine attributes from HNReader.app..."
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/HNReader.app"],
-                   print_stderr: true
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.provenance", "#{appdir}/HNReader.app"],
-                   print_stderr: true
-    puts "Done. HNReader.app should launch without Gatekeeper warnings."
+    %w[com.apple.quarantine com.apple.provenance].each do |attr|
+      result = system_command "/usr/bin/xattr",
+                              args: ["-dr", attr, "#{appdir}/HNReader.app"]
+      unless result.exit_status.zero?
+        opoo "Failed to remove #{attr} from HNReader.app: #{result.stderr.strip}"
+      end
+    end
   end
 
   zap trash: [
