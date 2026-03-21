@@ -12,8 +12,14 @@ cask "hn-reader" do
   app "HNReader.app"
 
   postflight do
+    puts "Removing quarantine attributes from HNReader.app..."
     system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/HNReader.app"]
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/HNReader.app"],
+                   print_stderr: true
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.provenance", "#{appdir}/HNReader.app"],
+                   print_stderr: true
+    puts "Done. HNReader.app should launch without Gatekeeper warnings."
   end
 
   zap trash: [
