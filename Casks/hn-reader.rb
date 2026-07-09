@@ -7,7 +7,7 @@ cask "hn-reader" do
   desc "Native macOS app for browsing Hacker News stories"
   homepage "https://github.com/tbeseda/hnr-swiftui"
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "HNReader.app"
 
