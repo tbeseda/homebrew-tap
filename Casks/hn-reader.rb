@@ -1,6 +1,6 @@
 cask "hn-reader" do
   version "0.4.0"
-  sha256 "ac20fa90f250214b15d866a818b5096c441ef123cceefb258f2c09636d9fb5a2"
+  sha256 "9d06e1db458af72d73c6c5f6029bb0362750a01e319575548652a89559cd77b9"
 
   url "https://github.com/tbeseda/hnr-swiftui/releases/download/v#{version}/HNReader.zip"
   name "HN Reader"
