@@ -1,6 +1,6 @@
 cask "md-vault" do
   version "0.1.0"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "815fed92e090b3ecf100055b11c1c472c5c0a11c988796143ffd75bb1ebc31e9"
 
   url "https://github.com/tbeseda/md-vault/releases/download/v#{version}/md-vault.zip"
   name "md-vault"
