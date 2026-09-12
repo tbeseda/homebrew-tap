@@ -1,13 +1,13 @@
 cask "hn-reader" do
-  version "0.4.2"
-  sha256 "e9b425d43ce07c635a9af308ca47795d68e72f5fd4e9f285cd4d8d47bcebe927"
+  version "0.5.0"
+  sha256 "b06e2bcc8aedebbe75c4f5e747d9b5ca7cece1decfc5120a0453c5a68679e06b"
 
   url "https://github.com/tbeseda/hnr-swiftui/releases/download/v#{version}/HNReader.zip"
   name "HN Reader"
   desc "Hacker News story reader with unread tracking"
   homepage "https://github.com/tbeseda/hnr-swiftui"
 
-  depends_on macos: :sequoia
+  depends_on macos: :tahoe
 
   app "HNReader.app"
 
