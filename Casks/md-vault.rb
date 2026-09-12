@@ -11,12 +11,10 @@ cask "md-vault" do
 
   app "md-vault.app"
 
-  postflight do
-    %w[com.apple.quarantine com.apple.provenance].each do |attr|
-      result = system_command "/usr/bin/xattr",
-                              args: ["-dr", attr, "#{appdir}/md-vault.app"]
-      opoo "Failed to remove #{attr} from md-vault.app: #{result.stderr.strip}" unless result.exit_status.zero?
-    end
+  # The app is unsigned; clear Gatekeeper's quarantine so it opens
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/md-vault.app"], must_succeed: false
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.provenance", "{{appdir}}/md-vault.app"], must_succeed: false
   end
 
   zap trash: "~/Library/Preferences/com.tbeseda.md-vault.plist"
